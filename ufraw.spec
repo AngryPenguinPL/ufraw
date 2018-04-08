@@ -5,12 +5,14 @@
 %endif
 
 Name:		ufraw
-Version:	0.20
-Release:	6
+Version:	0.22
+Release:	1
 Summary:	Graphical tool to convert raw images of digital cameras
 Group:		Graphics
 URL:		http://ufraw.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/sourceforge/ufraw/%{name}-%{version}.tar.gz
+Source0:  https://sourceforge.net/projects/ufraw/files/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
+# Patch create at upstream issue https://sourceforge.net/p/ufraw/bugs/419/
+Patch0: ufraw-0.22-openmandriva-wrong-variable-dcrawcc.patch
 License:	GPLv2+
 BuildRequires:	gimp-devel >= 2.0
 BuildRequires:	pkgconfig(gtk+-x11-2.0)
@@ -75,6 +77,7 @@ cameras supported by dcraw are also supported by this plug-in.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 export CPPFLAGS="-I/usr/include/lensfun"
